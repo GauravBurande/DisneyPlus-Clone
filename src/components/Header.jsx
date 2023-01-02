@@ -180,7 +180,11 @@ const Login = styled.a`
 `
 
 const UserImg = styled.img`
-    height: 100%;
+    height: 60%;
+    max-width: 60%;
+    letter-spacing: 1.5px;
+    font-size: medium;
+    border-radius: 100%;
 `
 
 
