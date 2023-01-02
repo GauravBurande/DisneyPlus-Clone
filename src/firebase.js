@@ -7,7 +7,7 @@ const { initializeApp } = require("firebase/app");
 const { getAnalytics } = require("firebase/analytics");
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDuauhtVpEewdiOauz4IqDjaV2ZnqHBBNE",
+    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
     authDomain: "disneyplus-clone-642bb.firebaseapp.com",
     projectId: "disneyplus-clone-642bb",
     storageBucket: "disneyplus-clone-642bb.appspot.com",
@@ -25,4 +25,4 @@ const provider = new GoogleAuthProvider();
 const storage = getStorage();
 
 export { auth, provider, analytics, storage };
-export default db;
+export default db; 

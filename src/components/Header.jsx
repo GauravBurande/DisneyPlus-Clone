@@ -15,11 +15,11 @@ const Header = () => {
     const userName = useSelector(selectUserName)
     const userPhoto = useSelector(selectUserPhoto)
 
-    const setUser = (user) => {
+    const setUser = async (user) => {
         dispatch(setUserLoginDetails({
             name: user.displayName,
             email: user.email,
-            photo: user.photoURL,
+            photo: await user.photoURL,
         }))
     }
 
