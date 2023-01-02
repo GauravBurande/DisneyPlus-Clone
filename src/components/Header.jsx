@@ -1,13 +1,31 @@
-import { signInWithPopup } from 'firebase/auth'
 import React from 'react'
 import styled from 'styled-components'
+import { signInWithPopup } from 'firebase/auth'
 import { auth, provider } from '../firebase'
+import { useDispatch, useSelector, } from 'react-redux'
+// actually there's no useHistory hook, possibility of an error here
+// import { useHistory } from "react-router-dom"
+import { selectUserName, selectUserPhoto, setUserLoginDetails } from '../features/user/userSlice'
 
 const Header = () => {
 
+    const dispatch = useDispatch()
+    // fix this useHistory issue
+    // const history = useHistory()
+    const userName = useSelector(selectUserName)
+    const userPhoto = useSelector(selectUserPhoto)
+
+    const setUser = (user) => {
+        dispatch(setUserLoginDetails({
+            name: user.displayName,
+            email: user.email,
+            photo: user.photoURL,
+        }))
+    }
+
     const handleAuth = () => {
         provider.setCustomParameters({ prompt: 'select_account' });
-        signInWithPopup(auth, provider).then(result => console.log(result))
+        signInWithPopup(auth, provider).then(result => { setUser(result.user) })
             .catch(error => alert(error.message))
     }
 
@@ -16,33 +34,39 @@ const Header = () => {
             <Logo>
                 <img src="/images/logo.svg" alt="disney+" />
             </Logo>
-            <NavMenu>
-                <a href="/home">
-                    <img src="/images/home-icon.svg" alt="home" />
-                    <span>HOME</span>
-                </a>
-                <a href="/home">
-                    <img src="/images/search-icon.svg" alt="home" />
-                    <span>SEARCH</span>
-                </a>
-                <a href="/home">
-                    <img src="/images/watchlist-icon.svg" alt="watchlist" />
-                    <span>WATCHLIST</span>
-                </a>
-                <a href="/home">
-                    <img src="/images/original-icon.svg" alt="originals" />
-                    <span>ORIGINALS</span>
-                </a>
-                <a href="/home">
-                    <img src="/images/movie-icon.svg" alt="movies" />
-                    <span>MOVIES</span>
-                </a>
-                <a href="/home">
-                    <img src="/images/series-icon.svg" alt="series" />
-                    <span>SERIES</span>
-                </a>
-            </NavMenu>
-            <Login onClick={handleAuth}>Login</Login>
+
+            {
+                !userName ? (<Login onClick={handleAuth}>Login</Login>) :
+                    (<>
+                        <NavMenu>
+                            <a href="/home">
+                                <img src="/images/home-icon.svg" alt="home" />
+                                <span>HOME</span>
+                            </a>
+                            <a href="/home">
+                                <img src="/images/search-icon.svg" alt="home" />
+                                <span>SEARCH</span>
+                            </a>
+                            <a href="/home">
+                                <img src="/images/watchlist-icon.svg" alt="watchlist" />
+                                <span>WATCHLIST</span>
+                            </a>
+                            <a href="/home">
+                                <img src="/images/original-icon.svg" alt="originals" />
+                                <span>ORIGINALS</span>
+                            </a>
+                            <a href="/home">
+                                <img src="/images/movie-icon.svg" alt="movies" />
+                                <span>MOVIES</span>
+                            </a>
+                            <a href="/home">
+                                <img src="/images/series-icon.svg" alt="series" />
+                                <span>SERIES</span>
+                            </a>
+                        </NavMenu>
+                        <UserImg src={userPhoto} alt={userName} />
+                    </>)
+            }
         </Nav>
     )
 }
@@ -153,6 +177,10 @@ const Login = styled.a`
         cursor: pointer;
         border-color: transparent;
     }
+`
+
+const UserImg = styled.img`
+    height: 100%;
 `
 
 
