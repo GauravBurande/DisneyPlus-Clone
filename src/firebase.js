@@ -1,8 +1,8 @@
-// import { initializeApp } from "firebase/app";
+// import { initializeApp } from "firebase/app";        changed due to package error while compiling
 import { getFirestore } from 'firebase/firestore/lite';
 import { GoogleAuthProvider, getAuth } from 'firebase/auth';
 import { getStorage } from "firebase/storage";
-// import { getAnalytics } from "firebase/analytics";
+// import { getAnalytics } from "firebase/analytics";       changed due to package error while compiling
 const { initializeApp } = require("firebase/app");
 const { getAnalytics } = require("firebase/analytics");
 
