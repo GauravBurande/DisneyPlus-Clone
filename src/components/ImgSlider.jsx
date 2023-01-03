@@ -89,8 +89,10 @@ const Wrap = styled.div`
     position: relative;
 
     a {
-        border-radius: 4px;
-       box-shadow: rgb(0 0 0 / 69%) 0px 26px, 30px, -10px, rgb(0 0 0 / 73%) 0px 16px 10px -10px;
+       border-radius: 4px;
+       box-shadow: 0px 1px 29px 10px rgba(0,0,0,0.75);
+        -webkit-box-shadow: 0px 1px 29px 10px rgba(0,0,0,0.75);
+        -moz-box-shadow: 0px 1px 29px 10px rgba(0,0,0,0.75);
        display: block;
        position: relative;
        padding: 4px;

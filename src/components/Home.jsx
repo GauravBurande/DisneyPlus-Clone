@@ -1,11 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 import ImgSlider from './ImgSlider'
+import Viewers from './Viewers'
 
 const Home = () => {
     return (
         <Container>
             <ImgSlider />
+            <Viewers />
         </Container>
     )
 }
@@ -25,7 +27,6 @@ const Container = styled.main`
         inset: 0px;
         opacity: .7;
         z-index: -1;
-        
     }
 `
 
