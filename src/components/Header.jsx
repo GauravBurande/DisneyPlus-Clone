@@ -1,19 +1,27 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { signInWithPopup } from 'firebase/auth'
 import { auth, provider } from '../firebase'
 import { useDispatch, useSelector, } from 'react-redux'
-// actually there's no useHistory hook, possibility of an error here
-// import { useHistory } from "react-router-dom"
-import { selectUserName, selectUserPhoto, setUserLoginDetails } from '../features/user/userSlice'
+import { selectUserName, selectUserPhoto, setSignOutState, setUserLoginDetails } from '../features/user/userSlice'
+import { useNavigate } from 'react-router-dom'
 
 const Header = () => {
 
     const dispatch = useDispatch()
-    // fix this useHistory issue
-    // const history = useHistory()
+    const navigate = useNavigate()
     const userName = useSelector(selectUserName)
     const userPhoto = useSelector(selectUserPhoto)
+
+    useEffect(() => {
+        auth.onAuthStateChanged(async (user) => {
+            if (user) {
+                setUser(user)
+                navigate('/home')
+            }
+        })
+        // eslint-disable-next-line
+    }, [userName])
 
     const setUser = async (user) => {
         dispatch(setUserLoginDetails({
@@ -25,8 +33,18 @@ const Header = () => {
 
     const handleAuth = () => {
         provider.setCustomParameters({ prompt: 'select_account' });
-        signInWithPopup(auth, provider).then(result => { setUser(result.user) })
-            .catch(error => alert(error.message))
+
+        if (!userName) {
+            signInWithPopup(auth, provider).then(result => { setUser(result.user) })
+                .catch(error => alert(error.message))
+        } else if (userName) {
+            auth.signOut().then(() => {
+                dispatch(setSignOutState())
+                navigate('/')
+            }).catch((error) => {
+                alert(error.message)
+            })
+        }
     }
 
     return (
@@ -64,7 +82,12 @@ const Header = () => {
                                 <span>SERIES</span>
                             </a>
                         </NavMenu>
-                        <UserImg src={userPhoto} alt={userName} />
+                        <SignOut>
+                            <UserImg src={userPhoto} alt={userName} />
+                            <DropDown>
+                                <span onClick={handleAuth}>Sign Out</span>
+                            </DropDown>
+                        </SignOut>
                     </>)
             }
         </Nav>
@@ -181,12 +204,40 @@ const Login = styled.a`
 
 const UserImg = styled.img`
     height: 60%;
-    max-width: 60%;
+    max-width: 100%;
     letter-spacing: 1.5px;
     font-size: medium;
-    border-radius: 100%;
+    border-radius: 50%;
+`
+const DropDown = styled.div`
+    position: absolute;
+    top: 55px;
+    right: 15px;
+    background: rgb(19, 19, 19);
+    border: rgba(151, 151, 151, 0.34);
+    border-radius: 4px;
+    box-shadow: rgb(0 0 0 / 50%) 0px 0px 18px 0px;
+    padding: 10px;
+    font-size: 14px;
+    letter-spacing: 1.5px;
+    opacity: 0;
+    transition: all .3s;
 `
 
+const SignOut = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    height: 100%;
+
+    :hover {
+        ${DropDown} {
+            opacity: 1;
+            transition: all .6s;
+        }
+    }
+`
 
 
 export default Header
