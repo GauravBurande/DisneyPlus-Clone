@@ -25,7 +25,7 @@ const Container = styled.main`
         content: '';
         position: absolute;
         inset: 0px;
-        opacity: .7;
+        /* opacity: .7; */
         z-index: -1;
     }
 `
