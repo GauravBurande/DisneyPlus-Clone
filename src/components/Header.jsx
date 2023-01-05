@@ -83,7 +83,7 @@ const Header = () => {
                             </a>
                         </NavMenu>
                         <SignOut>
-                            <UserImg src={userPhoto} alt={userName} referrerPolicy="no-referrer" />
+                            <UserImg src={userPhoto} alt={userName} />
                             <DropDown>
                                 <span onClick={handleAuth}>Sign Out</span>
                             </DropDown>
