@@ -27,7 +27,7 @@ const Header = () => {
         dispatch(setUserLoginDetails({
             name: user.displayName,
             email: user.email,
-            photo: await user.photoURL,
+            photo: await user.photoURL && user.photoURL,
         }))
     }
 
@@ -83,7 +83,7 @@ const Header = () => {
                             </a>
                         </NavMenu>
                         <SignOut>
-                            <UserImg src={userPhoto} alt={userName} />
+                            <UserImg src={userPhoto} alt={userName} referrerPolicy="no-referrer" />
                             <DropDown>
                                 <span onClick={handleAuth}>Sign Out</span>
                             </DropDown>
