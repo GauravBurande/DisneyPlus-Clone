@@ -100,6 +100,7 @@ const Nav = styled.nav`
     left: 0;
     right: 0;
     height: 70px;
+    font-family: sans-serif;
     background-color: #090b13;
     display: flex;
     justify-content: space-between;

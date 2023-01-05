@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Sen:wght@400;700&display=swap');
+
 html {
   scroll-behavior: smooth;
 }
@@ -15,7 +17,8 @@ body {
   background-color: var(--background-color);
   color: var(--text-color);
 
-  font-family: Avenir-Roman, sans-serif;
+  font-family: 'Sen', sans-serif;
+  ;
   margin: 0;
   padding: 0;
 }
