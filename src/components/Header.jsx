@@ -57,27 +57,27 @@ const Header = () => {
                 !userName ? (<Login onClick={handleAuth}>Login</Login>) :
                     (<>
                         <NavMenu>
-                            <a href="/home">
+                            <a href="#">
                                 <img src="/images/home-icon.svg" alt="home" />
                                 <span>HOME</span>
                             </a>
-                            <a href="/home">
+                            <a href="#">
                                 <img src="/images/search-icon.svg" alt="home" />
                                 <span>SEARCH</span>
                             </a>
-                            <a href="/home">
+                            <a href="#">
                                 <img src="/images/watchlist-icon.svg" alt="watchlist" />
                                 <span>WATCHLIST</span>
                             </a>
-                            <a href="/home">
+                            <a href="#">
                                 <img src="/images/original-icon.svg" alt="originals" />
                                 <span>ORIGINALS</span>
                             </a>
-                            <a href="/home">
+                            <a href="#">
                                 <img src="/images/movie-icon.svg" alt="movies" />
                                 <span>MOVIES</span>
                             </a>
-                            <a href="/home">
+                            <a href="#">
                                 <img src="/images/series-icon.svg" alt="series" />
                                 <span>SERIES</span>
                             </a>
