@@ -8,7 +8,7 @@ const Originals = () => {
     const orgMovies = useSelector(selectOriginal)
     return (
         <Container>
-            <h4>Recommended for you</h4>
+            <h4>Originals</h4>
             <Content>
                 {
                     orgMovies && orgMovies.map((movie, key) => {
