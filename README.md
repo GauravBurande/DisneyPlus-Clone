@@ -8,3 +8,4 @@ My preffered weapons of choice to build this webapp:
 * ReactJS
 * Styled Components
 * Firebase for auth and databse
+* Redux for state management
