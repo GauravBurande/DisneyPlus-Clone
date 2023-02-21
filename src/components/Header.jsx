@@ -62,7 +62,7 @@ const Header = () => {
                                 <span>HOME</span>
                             </a>
                             <a href="#">
-                                <img src="/images/search-icon.svg" alt="home" />
+                                <img src="/images/search-icon.svg" alt="search" />
                                 <span>SEARCH</span>
                             </a>
                             <a href="#">
